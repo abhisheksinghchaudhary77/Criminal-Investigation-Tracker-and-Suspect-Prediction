@@ -1,12 +1,15 @@
 package admin_login;
+import add_case.Case_Add;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Login_Admin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login_Admin
-     */
+    
     public Login_Admin() {
         initComponents();
     }
@@ -83,7 +86,28 @@ public class Login_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-           
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql="Select * from admin_login where uname_admin_login=? and pass_admin_login=?";
+            PreparedStatement pst=con.prepareStatement(sql);
+            pst.setString(1, jid.getText());
+            pst.setString(2, jpass.getText());
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Login Successful");
+                Case_Add ac = new Case_Add();
+                ac.setVisible(true);
+                setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid User");
+                jid.setText("");
+                jpass.setText("");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void jidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jidActionPerformed

@@ -3,7 +3,12 @@ package add_officer;
 import add_case.Case_Add;
 import assign_case_officer.Officer_To_Case;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,11 +43,11 @@ public class Officer_Add extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         officer_id = new javax.swing.JTextField();
         officer_name = new javax.swing.JTextField();
-        mob_no = new javax.swing.JTextField();
+        officer_mob = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        email_id = new javax.swing.JTextField();
-        area = new javax.swing.JTextField();
+        officer_address = new javax.swing.JTextArea();
+        officer_email = new javax.swing.JTextField();
+        officer_area = new javax.swing.JTextField();
         attach_image = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         image_path = new javax.swing.JTextField();
@@ -95,15 +100,15 @@ public class Officer_Add extends javax.swing.JFrame {
         });
         jPanel1.add(officer_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 150, -1));
         jPanel1.add(officer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 150, -1));
-        jPanel1.add(mob_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 150, -1));
+        jPanel1.add(officer_mob, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 150, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        officer_address.setColumns(20);
+        officer_address.setRows(5);
+        jScrollPane1.setViewportView(officer_address);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 180, 50));
-        jPanel1.add(email_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 150, -1));
-        jPanel1.add(area, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 150, -1));
+        jPanel1.add(officer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 150, -1));
+        jPanel1.add(officer_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 150, -1));
 
         attach_image.setText("Choose File");
         attach_image.addActionListener(new java.awt.event.ActionListener() {
@@ -114,10 +119,20 @@ public class Officer_Add extends javax.swing.JFrame {
         jPanel1.add(attach_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
 
         jButton2.setText("Upload");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, -1, -1));
         jPanel1.add(image_path, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 130, -1));
 
         submit_add_officer.setText("Submit");
+        submit_add_officer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_add_officerActionPerformed(evt);
+            }
+        });
         jPanel1.add(submit_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
         nav_add_case.setText("Add Case");
@@ -213,6 +228,40 @@ public class Officer_Add extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_case_officerActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void submit_add_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_add_officerActionPerformed
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con1=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql="Insert into officers(idofficers, officers_name, officers_mobile, officers_address, officers_email, officers_area) values(?,?,?,?,?,?)";
+            PreparedStatement pst1=con1.prepareStatement(sql);
+            pst1.setString(1, officer_id.getText());
+            pst1.setString(2, officer_name.getText());
+            pst1.setString(3, officer_mob.getText());
+            pst1.setString(4, officer_address.getText());
+            pst1.setString(5, officer_email.getText());
+            pst1.setString(6, officer_area.getText());
+            pst1.execute();
+            //JOptionPane.showMessageDialog(null, "Officer Added Successfully");
+            
+                JOptionPane.showMessageDialog(null, "Officer Added Successfully");
+                Officer_Add ao = new Officer_Add();
+                ao.setVisible(true);
+                setVisible(false);
+                officer_id.setText("");
+                officer_name.setText("");
+                officer_mob.setText("");
+                officer_address.setText("");
+                officer_email.setText("");
+                officer_area.setText("");     
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+    }//GEN-LAST:event_submit_add_officerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,9 +298,7 @@ public class Officer_Add extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField area;
     private javax.swing.JButton attach_image;
-    private javax.swing.JTextField email_id;
     private javax.swing.JTextField image_path;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -264,8 +311,6 @@ public class Officer_Add extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField mob_no;
     private javax.swing.JButton nav_add_case;
     private javax.swing.JButton nav_add_case_officer;
     private javax.swing.JButton nav_add_officer;
@@ -275,7 +320,11 @@ public class Officer_Add extends javax.swing.JFrame {
     private javax.swing.JButton nav_view_case_history;
     private javax.swing.JButton nav_view_evidence;
     private javax.swing.JButton nav_view_suspect;
+    private javax.swing.JTextArea officer_address;
+    private javax.swing.JTextField officer_area;
+    private javax.swing.JTextField officer_email;
     private javax.swing.JTextField officer_id;
+    private javax.swing.JTextField officer_mob;
     private javax.swing.JTextField officer_name;
     private javax.swing.JButton submit_add_officer;
     // End of variables declaration//GEN-END:variables
