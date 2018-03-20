@@ -2,6 +2,11 @@ package assign_case_officer;
 
 import add_case.Case_Add;
 import add_officer.Officer_Add;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,12 +14,46 @@ import add_officer.Officer_Add;
  */
 public class Officer_To_Case extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Officer_To_Case
-     */
+    Connection con4 = null;
+    Connection con5 = null;
+    PreparedStatement pst4 = null;
+    PreparedStatement pst5 = null;
+    ResultSet rs2 = null;
+    ResultSet rs3 = null;
     public Officer_To_Case() {
         initComponents();
+        combobox3();
+        combobox2();
     }
+    private void combobox3(){
+        try{
+            con5=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql2 = "select * from cases";
+            pst5 = con5.prepareStatement(sql2);
+            rs3 = pst5.executeQuery();
+            while(rs3.next()){
+            String ca_name = rs3.getString("cases_name");
+            jComboBox3.addItem(ca_name);
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    private void combobox2(){
+        try{
+            con4=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql3 = "select * from officers";
+            pst4 = con4.prepareStatement(sql3);
+            rs2 = pst4.executeQuery();
+            while(rs2.next()){
+            String off_name = rs2.getString("officers_name");
+            jComboBox4.addItem(off_name);
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,10 +71,10 @@ public class Officer_To_Case extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         submit_assign_to_case = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
         nav_add_case = new javax.swing.JButton();
         nav_add_officer = new javax.swing.JButton();
         nav_add_case_officer = new javax.swing.JButton();
@@ -70,8 +109,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
         submit_assign_to_case.setText("Submit");
         jPanel1.add(submit_assign_to_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, -1));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +119,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 130, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 130, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 130, -1));
+        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 130, -1));
 
         nav_add_case.setText("Add Case");
         nav_add_case.addActionListener(new java.awt.event.ActionListener() {
@@ -205,8 +242,8 @@ public class Officer_To_Case extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
