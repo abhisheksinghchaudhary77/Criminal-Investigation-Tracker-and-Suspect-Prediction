@@ -16,8 +16,10 @@ public class Officer_To_Case extends javax.swing.JFrame {
 
     Connection con4 = null;
     Connection con5 = null;
+    Connection con6 = null;
     PreparedStatement pst4 = null;
     PreparedStatement pst5 = null;
+    PreparedStatement pst6 = null;
     ResultSet rs2 = null;
     ResultSet rs3 = null;
     public Officer_To_Case() {
@@ -32,8 +34,8 @@ public class Officer_To_Case extends javax.swing.JFrame {
             pst5 = con5.prepareStatement(sql2);
             rs3 = pst5.executeQuery();
             while(rs3.next()){
-            String ca_name = rs3.getString("cases_name");
-            jComboBox3.addItem(ca_name);
+            String ca_id = rs3.getString("id_cases");
+            jComboBox3.addItem(ca_id);
         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -46,8 +48,8 @@ public class Officer_To_Case extends javax.swing.JFrame {
             pst4 = con4.prepareStatement(sql3);
             rs2 = pst4.executeQuery();
             while(rs2.next()){
-            String off_name = rs2.getString("officers_name");
-            jComboBox4.addItem(off_name);
+            String off_id = rs2.getString("idofficers");
+            jComboBox4.addItem(off_id);
         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -72,8 +74,8 @@ public class Officer_To_Case extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         submit_assign_to_case = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        case_name = new javax.swing.JTextField();
+        officer_name = new javax.swing.JTextField();
         jComboBox4 = new javax.swing.JComboBox<>();
         nav_add_case = new javax.swing.JButton();
         nav_add_officer = new javax.swing.JButton();
@@ -107,17 +109,22 @@ public class Officer_To_Case extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
         submit_assign_to_case.setText("Submit");
+        submit_assign_to_case.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_assign_to_caseActionPerformed(evt);
+            }
+        });
         jPanel1.add(submit_assign_to_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
         jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        case_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                case_nameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 130, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 130, -1));
+        jPanel1.add(case_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 130, -1));
+        jPanel1.add(officer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 130, -1));
 
         jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 130, -1));
 
@@ -183,9 +190,9 @@ public class Officer_To_Case extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void case_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_case_nameActionPerformed
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
         // TODO add your handling code here:
@@ -205,6 +212,28 @@ public class Officer_To_Case extends javax.swing.JFrame {
         Case_Add c = new Case_Add();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
+
+    private void submit_assign_to_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_assign_to_caseActionPerformed
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con6=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql = "Insert into officertocase(officer_id, officer_name, case_id, case_name) values(?,?,?,?)";
+            PreparedStatement pst6 = con6.prepareStatement(sql);
+            String comboval_officer = jComboBox3.getSelectedItem().toString();
+            pst6.setString(1, comboval_officer);
+            pst6.setString(2, officer_name.getText());
+            String comboval_case = jComboBox4.getSelectedItem().toString();
+            pst6.setString(3, comboval_case);
+            pst6.setString(4, case_name.getText());
+            pst6.execute();
+            JOptionPane.showMessageDialog(null, "Officer Assigned to Case Successfully");
+            Officer_To_Case otc = new Officer_To_Case();
+            otc.setVisible(true);
+            setVisible(false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_submit_assign_to_caseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +271,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField case_name;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -250,8 +280,6 @@ public class Officer_To_Case extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton nav_add_case;
     private javax.swing.JButton nav_add_case_officer;
     private javax.swing.JButton nav_add_officer;
@@ -261,6 +289,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
     private javax.swing.JButton nav_view_case_history;
     private javax.swing.JButton nav_view_evidence;
     private javax.swing.JButton nav_view_suspect;
+    private javax.swing.JTextField officer_name;
     private javax.swing.JButton submit_assign_to_case;
     // End of variables declaration//GEN-END:variables
 }
