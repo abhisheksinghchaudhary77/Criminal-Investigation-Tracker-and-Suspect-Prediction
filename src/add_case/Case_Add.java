@@ -3,6 +3,12 @@ package add_case;
 import add_officer.Officer_Add;
 import admin_login.Login_Admin;
 import assign_case_officer.Officer_To_Case;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -10,12 +16,27 @@ import assign_case_officer.Officer_To_Case;
  */
 public class Case_Add extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Case_Add
-     */
+    Connection con3 = null;
+    PreparedStatement pst3 = null;
+    ResultSet rs1 = null;
     public Case_Add() {
         initComponents();
+        //combobox1();
     }
+    /*private void combobox1(){
+        try{
+            con3=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql = "select * from officers";
+            pst3 = con3.prepareStatement(sql);
+            rs1 = pst3.executeQuery();
+            while(rs1.next()){
+            String off_id = rs1.getString("idofficers");
+            jComboBox1.addItem(off_id);
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,19 +48,6 @@ public class Case_Add extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        case_id = new javax.swing.JTextField();
-        case_name = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        officer_name = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         nav_add_case = new javax.swing.JButton();
         nav_add_officer = new javax.swing.JButton();
         nav_add_case_officer = new javax.swing.JButton();
@@ -49,57 +57,26 @@ public class Case_Add extends javax.swing.JFrame {
         nav_view_evidence = new javax.swing.JButton();
         nav_view_case_history = new javax.swing.JButton();
         nav_logout = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        case_id = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        case_note = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        case_id1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1123, 530));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(780, 550));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1123, 530));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 450));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setText("Add Case");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
-
-        jLabel2.setText("Case ID:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
-
-        jLabel3.setText("Case Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
-
-        jLabel4.setText("Officer ID:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
-
-        jLabel5.setText("Officer Name:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
-
-        jLabel6.setText("Note:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
-        jPanel1.add(case_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 170, -1));
-        jPanel1.add(case_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 170, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, -1, -1));
-
-        officer_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                officer_nameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(officer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 170, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 170, -1));
-
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, -1));
 
         nav_add_case.setText("Add Case");
         nav_add_case.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +84,7 @@ public class Case_Add extends javax.swing.JFrame {
                 nav_add_caseActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 120, -1));
+        jPanel1.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 120, -1));
 
         nav_add_officer.setText("Add Officer");
         nav_add_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +92,7 @@ public class Case_Add extends javax.swing.JFrame {
                 nav_add_officerActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, -1));
+        jPanel1.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, -1));
 
         nav_add_case_officer.setText("Add Case Officer");
         nav_add_case_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -123,22 +100,22 @@ public class Case_Add extends javax.swing.JFrame {
                 nav_add_case_officerActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 120, -1));
+        jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 120, -1));
 
         nav_predict_result.setText("Predict Result");
-        jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 120, -1));
+        jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 120, -1));
 
         nav_add_result.setText("Add Result");
-        jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 120, -1));
+        jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
-        jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, -1));
+        jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
-        jPanel1.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 120, -1));
+        jPanel1.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 120, -1));
 
         nav_view_case_history.setText("View Case History");
-        jPanel1.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 120, -1));
+        jPanel1.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
 
         nav_logout.setText("Logout");
         nav_logout.setToolTipText("");
@@ -147,48 +124,189 @@ public class Case_Add extends javax.swing.JFrame {
                 nav_logoutActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 120, -1));
+        jPanel1.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 120, -1));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel4.setText("Menu");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(35, 45, 65));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Case ID:");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Case Name:");
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Note:");
+
+        case_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                case_idActionPerformed(evt);
+            }
+        });
+
+        case_note.setColumns(20);
+        case_note.setRows(5);
+        jScrollPane2.setViewportView(case_note);
+
+        jPanel3.setBackground(new java.awt.Color(97, 212, 191));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Submit");
+        jLabel8.setToolTipText("");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Add Case");
+
+        case_id1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                case_id1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(case_id1)
+                            .addComponent(case_id))))
+                .addContainerGap(196, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(case_id1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void officer_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officer_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_officer_nameActionPerformed
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nav_logoutActionPerformed
 
-    private void nav_add_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_caseActionPerformed
-        Case_Add c = new Case_Add();
+    private void nav_add_case_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_case_officerActionPerformed
+        Officer_To_Case c = new Officer_To_Case();
         c.setVisible(true);
-    }//GEN-LAST:event_nav_add_caseActionPerformed
+    }//GEN-LAST:event_nav_add_case_officerActionPerformed
 
     private void nav_add_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_officerActionPerformed
         Officer_Add o = new Officer_Add();
         o.setVisible(true);
     }//GEN-LAST:event_nav_add_officerActionPerformed
 
-    private void nav_add_case_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_case_officerActionPerformed
-        Officer_To_Case c = new Officer_To_Case();
+    private void nav_add_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_caseActionPerformed
+        Case_Add c = new Case_Add();
         c.setVisible(true);
-    }//GEN-LAST:event_nav_add_case_officerActionPerformed
+    }//GEN-LAST:event_nav_add_caseActionPerformed
+
+    private void case_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_case_idActionPerformed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con2=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql="Insert into cases(id_cases, cases_name, cases_note) values(?,?,?)";
+            PreparedStatement pst2=con2.prepareStatement(sql);
+            pst2.setString(1, case_id.getText());
+            pst2.setString(2, case_id1.getText());
+            //pst2.setString(3, officer_name.getText());
+            pst2.setString(3, case_note.getText());
+            pst2.execute();
+            JOptionPane.showMessageDialog(null, "Case Added Successfully");
+            Case_Add ac = new Case_Add();
+            ac.setVisible(true);
+            setVisible(false);
+            case_id.setText("");
+            case_id1.setText("");
+            //officer_name.setText("");
+            case_note.setText("");
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void case_id1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_id1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_case_id1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,18 +345,18 @@ public class Case_Add extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField case_id;
-    private javax.swing.JTextField case_name;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField case_id1;
+    private javax.swing.JTextArea case_note;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton nav_add_case;
     private javax.swing.JButton nav_add_case_officer;
     private javax.swing.JButton nav_add_officer;
@@ -248,6 +366,6 @@ public class Case_Add extends javax.swing.JFrame {
     private javax.swing.JButton nav_view_case_history;
     private javax.swing.JButton nav_view_evidence;
     private javax.swing.JButton nav_view_suspect;
-    private javax.swing.JTextField officer_name;
     // End of variables declaration//GEN-END:variables
 }
+
