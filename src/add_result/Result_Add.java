@@ -32,13 +32,6 @@ public class Result_Add extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        case_id = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        case_name = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         nav_add_case = new javax.swing.JButton();
         nav_add_officer = new javax.swing.JButton();
         nav_add_case_officer = new javax.swing.JButton();
@@ -48,36 +41,24 @@ public class Result_Add extends javax.swing.JFrame {
         nav_view_evidence = new javax.swing.JButton();
         nav_view_case_history = new javax.swing.JButton();
         nav_logout = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        case_id = new javax.swing.JTextField();
+        case_name = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1123, 530));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(747, 485));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel2.setText("Add Result");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
-
-        jLabel3.setText("Case ID:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
-
-        case_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                case_idActionPerformed(evt);
-            }
-        });
-        jPanel2.add(case_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, -1));
-
-        jLabel4.setText("Case Name:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
-        jPanel2.add(case_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 130, -1));
-
-        jLabel1.setText("Suspects:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 90, -1));
 
         nav_add_case.setText("Add Case");
         nav_add_case.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +66,7 @@ public class Result_Add extends javax.swing.JFrame {
                 nav_add_caseActionPerformed(evt);
             }
         });
-        jPanel2.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 120, -1));
+        jPanel2.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, -1));
 
         nav_add_officer.setText("Add Officer");
         nav_add_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +74,7 @@ public class Result_Add extends javax.swing.JFrame {
                 nav_add_officerActionPerformed(evt);
             }
         });
-        jPanel2.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 120, -1));
+        jPanel2.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, -1));
 
         nav_add_case_officer.setText("Add Case Officer");
         nav_add_case_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -101,22 +82,22 @@ public class Result_Add extends javax.swing.JFrame {
                 nav_add_case_officerActionPerformed(evt);
             }
         });
-        jPanel2.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 120, -1));
+        jPanel2.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 120, -1));
 
         nav_predict_result.setText("Predict Result");
-        jPanel2.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 120, -1));
+        jPanel2.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 120, -1));
 
         nav_add_result.setText("Add Result");
-        jPanel2.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 120, -1));
+        jPanel2.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
-        jPanel2.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, -1));
+        jPanel2.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
-        jPanel2.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 120, -1));
+        jPanel2.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 120, -1));
 
         nav_view_case_history.setText("View Case History");
-        jPanel2.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 120, -1));
+        jPanel2.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 120, -1));
 
         nav_logout.setText("Logout");
         nav_logout.setToolTipText("");
@@ -125,28 +106,130 @@ public class Result_Add extends javax.swing.JFrame {
                 nav_logoutActionPerformed(evt);
             }
         });
-        jPanel2.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 120, -1));
+        jPanel2.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 120, -1));
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel5.setText("Menu");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(34, 45, 65));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Add Result");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Case ID:");
+
+        case_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                case_idActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Case Name:");
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Suspects:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jPanel3.setBackground(new java.awt.Color(97, 212, 191));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Submit");
+        jLabel8.setToolTipText("");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(88, 88, 88)
+                        .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(72, 72, 72)
+                        .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(83, 83, 83)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(223, 223, 223))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2)
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void case_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_idActionPerformed
@@ -172,9 +255,9 @@ public class Result_Add extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nav_logoutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -214,13 +297,16 @@ public class Result_Add extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField case_id;
     private javax.swing.JTextField case_name;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton nav_add_case;
     private javax.swing.JButton nav_add_case_officer;
     private javax.swing.JButton nav_add_officer;

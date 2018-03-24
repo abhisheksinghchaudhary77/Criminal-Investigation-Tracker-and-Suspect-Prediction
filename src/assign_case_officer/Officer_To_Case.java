@@ -67,16 +67,6 @@ public class Officer_To_Case extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        submit_assign_to_case = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        case_name = new javax.swing.JTextField();
-        officer_name = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
         nav_add_case = new javax.swing.JButton();
         nav_add_officer = new javax.swing.JButton();
         nav_add_case_officer = new javax.swing.JButton();
@@ -86,47 +76,26 @@ public class Officer_To_Case extends javax.swing.JFrame {
         nav_view_evidence = new javax.swing.JButton();
         nav_view_case_history = new javax.swing.JButton();
         nav_logout = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        case_name = new javax.swing.JTextField();
+        officer_name = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1123, 530));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setText("Assign Officer To Case");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
-
-        jLabel2.setText("Case ID:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
-
-        jLabel3.setText("Case Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
-
-        jLabel4.setText("Officer ID:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
-
-        jLabel5.setText("Officer Name:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
-
-        submit_assign_to_case.setText("Submit");
-        submit_assign_to_case.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submit_assign_to_caseActionPerformed(evt);
-            }
-        });
-        jPanel1.add(submit_assign_to_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
-
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, -1));
-
-        case_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                case_nameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(case_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 130, -1));
-        jPanel1.add(officer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 130, -1));
-
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 130, -1));
 
         nav_add_case.setText("Add Case");
         nav_add_case.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +103,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
                 nav_add_caseActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 120, -1));
+        jPanel1.add(nav_add_case, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 120, -1));
 
         nav_add_officer.setText("Add Officer");
         nav_add_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +111,7 @@ public class Officer_To_Case extends javax.swing.JFrame {
                 nav_add_officerActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, -1));
+        jPanel1.add(nav_add_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 120, -1));
 
         nav_add_case_officer.setText("Add Case Officer");
         nav_add_case_officer.addActionListener(new java.awt.event.ActionListener() {
@@ -150,22 +119,22 @@ public class Officer_To_Case extends javax.swing.JFrame {
                 nav_add_case_officerActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 120, -1));
+        jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, -1));
 
         nav_predict_result.setText("Predict Result");
-        jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 120, -1));
+        jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, -1));
 
         nav_add_result.setText("Add Result");
-        jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 120, -1));
+        jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
-        jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 120, -1));
+        jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
-        jPanel1.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 120, -1));
+        jPanel1.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 120, -1));
 
         nav_view_case_history.setText("View Case History");
-        jPanel1.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 120, -1));
+        jPanel1.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 120, -1));
 
         nav_logout.setText("Logout");
         nav_logout.setToolTipText("");
@@ -174,25 +143,132 @@ public class Officer_To_Case extends javax.swing.JFrame {
                 nav_logoutActionPerformed(evt);
             }
         });
-        jPanel1.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, -1));
+        jPanel1.add(nav_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 120, -1));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel6.setText("Menu");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(34, 45, 65));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Assign Officer To Case");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Case ID:");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Case Name:");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Officer ID:");
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Officer Name:");
+
+        jPanel4.setBackground(new java.awt.Color(97, 212, 191));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Submit");
+        jLabel9.setToolTipText("");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(75, 75, 75)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox3, 0, 125, Short.MAX_VALUE)
+                            .addComponent(case_name)
+                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(officer_name)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel2))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(officer_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void case_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_case_nameActionPerformed
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
         // TODO add your handling code here:
@@ -213,27 +289,9 @@ public class Officer_To_Case extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
 
-    private void submit_assign_to_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_assign_to_caseActionPerformed
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con6=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
-            String sql = "Insert into officertocase(officer_id, officer_name, case_id, case_name) values(?,?,?,?)";
-            PreparedStatement pst6 = con6.prepareStatement(sql);
-            String comboval_officer = jComboBox3.getSelectedItem().toString();
-            pst6.setString(1, comboval_officer);
-            pst6.setString(2, officer_name.getText());
-            String comboval_case = jComboBox4.getSelectedItem().toString();
-            pst6.setString(3, comboval_case);
-            pst6.setString(4, case_name.getText());
-            pst6.execute();
-            JOptionPane.showMessageDialog(null, "Officer Assigned to Case Successfully");
-            Officer_To_Case otc = new Officer_To_Case();
-            otc.setVisible(true);
-            setVisible(false);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_submit_assign_to_caseActionPerformed
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -279,7 +337,11 @@ public class Officer_To_Case extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton nav_add_case;
     private javax.swing.JButton nav_add_case_officer;
     private javax.swing.JButton nav_add_officer;
@@ -290,6 +352,5 @@ public class Officer_To_Case extends javax.swing.JFrame {
     private javax.swing.JButton nav_view_evidence;
     private javax.swing.JButton nav_view_suspect;
     private javax.swing.JTextField officer_name;
-    private javax.swing.JButton submit_assign_to_case;
     // End of variables declaration//GEN-END:variables
 }
