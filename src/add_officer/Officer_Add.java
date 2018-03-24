@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import predict_result.Result_Predict;
 
 /**
  *
@@ -93,6 +94,11 @@ public class Officer_Add extends javax.swing.JFrame {
         jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 120, -1));
 
         nav_predict_result.setText("Predict Result");
+        nav_predict_result.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_predict_resultActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 120, -1));
 
         nav_add_result.setText("Add Result");
@@ -321,6 +327,11 @@ public class Officer_Add extends javax.swing.JFrame {
         Case_Add c = new Case_Add();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
+
+    private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        Result_Predict rp = new Result_Predict();
+        rp.setVisible(true);
+    }//GEN-LAST:event_nav_predict_resultActionPerformed
 
     /**
      * @param args the command line arguments

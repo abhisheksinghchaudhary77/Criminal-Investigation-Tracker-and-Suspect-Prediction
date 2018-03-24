@@ -8,6 +8,7 @@ package add_result;
 import add_case.Case_Add;
 import add_officer.Officer_Add;
 import assign_case_officer.Officer_To_Case;
+import predict_result.Result_Predict;
 
 /**
  *
@@ -55,7 +56,6 @@ public class Result_Add extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(747, 485));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,6 +85,11 @@ public class Result_Add extends javax.swing.JFrame {
         jPanel2.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 120, -1));
 
         nav_predict_result.setText("Predict Result");
+        nav_predict_result.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_predict_resultActionPerformed(evt);
+            }
+        });
         jPanel2.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 120, -1));
 
         nav_add_result.setText("Add Result");
@@ -258,6 +263,11 @@ public class Result_Add extends javax.swing.JFrame {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        Result_Predict rp = new Result_Predict();
+        rp.setVisible(true);
+    }//GEN-LAST:event_nav_predict_resultActionPerformed
 
     /**
      * @param args the command line arguments

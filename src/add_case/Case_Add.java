@@ -1,13 +1,13 @@
 package add_case;
 
 import add_officer.Officer_Add;
-import admin_login.Login_Admin;
 import assign_case_officer.Officer_To_Case;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import predict_result.Result_Predict;
 
 
 /**
@@ -103,6 +103,11 @@ public class Case_Add extends javax.swing.JFrame {
         jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 120, -1));
 
         nav_predict_result.setText("Predict Result");
+        nav_predict_result.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_predict_resultActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 120, -1));
 
         nav_add_result.setText("Add Result");
@@ -307,6 +312,11 @@ public class Case_Add extends javax.swing.JFrame {
     private void case_id1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_id1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_case_id1ActionPerformed
+
+    private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        Result_Predict rp = new Result_Predict();
+        rp.setVisible(true);
+    }//GEN-LAST:event_nav_predict_resultActionPerformed
 
     /**
      * @param args the command line arguments
