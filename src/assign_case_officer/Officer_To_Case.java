@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import predict_result.Result_Predict;
 
 /**
  *
@@ -17,11 +18,19 @@ public class Officer_To_Case extends javax.swing.JFrame {
     Connection con4 = null;
     Connection con5 = null;
     Connection con6 = null;
+    Connection conn = null;
+    Connection conn1 = null;
+    Connection conn2 = null;
     PreparedStatement pst4 = null;
     PreparedStatement pst5 = null;
     PreparedStatement pst6 = null;
+    PreparedStatement pst = null;
+    PreparedStatement pst1 = null;
+    PreparedStatement pst2 = null;
     ResultSet rs2 = null;
     ResultSet rs3 = null;
+    ResultSet rs = null;
+    ResultSet rs1 = null;
     public Officer_To_Case() {
         initComponents();
         combobox3();
@@ -122,6 +131,11 @@ public class Officer_To_Case extends javax.swing.JFrame {
         jPanel1.add(nav_add_case_officer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, -1));
 
         nav_predict_result.setText("Predict Result");
+        nav_predict_result.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_predict_resultActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_predict_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, -1));
 
         nav_add_result.setText("Add Result");
@@ -193,6 +207,26 @@ public class Officer_To_Case extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
+
+        jComboBox3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox3PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
+        jComboBox4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox4PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -290,8 +324,73 @@ public class Officer_To_Case extends javax.swing.JFrame {
     }//GEN-LAST:event_nav_add_caseActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn2=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql="Insert into officertocase(case_id, case_name, officer_id, officer_name) values(?,?,?,?)";
+            PreparedStatement pst2=conn2.prepareStatement(sql);
+            String value1 = jComboBox3.getSelectedItem().toString();
+            pst2.setString(1, value1);
+            //pst2.setString(1, jComboBox3.getText());
+            pst2.setString(2, case_name.getText());
+            String value2 = jComboBox4.getSelectedItem().toString();
+            pst2.setString(3, value2);
+            //pst2.setString(3, jComboBox4.getText());
+            pst2.setString(4, officer_name.getText());
+            pst2.execute();
+            //JOptionPane.showMessageDialog(null, "Officer Added Successfully");
+
+            JOptionPane.showMessageDialog(null, "Case assigned to Respective Officer Successfully");
+            Officer_To_Case otc = new Officer_To_Case();
+            otc.setVisible(true);
+            setVisible(false);
+            //jComboBox3.setText("");
+            case_name.setText("");
+            //jComboBox4.setText("");
+            officer_name.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        Result_Predict rp = new Result_Predict();
+        rp.setVisible(true);
+    }//GEN-LAST:event_nav_predict_resultActionPerformed
+
+    private void jComboBox3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeInvisible
+        String tmp = (String)jComboBox3.getSelectedItem();
+        String sql = "select * from cases where id_cases=?";
+        try{
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, tmp);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                String add1 = rs.getString("cases_name");
+                case_name.setText(add1);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeInvisible
+
+    private void jComboBox4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox4PopupMenuWillBecomeInvisible
+        String tmp = (String)jComboBox4.getSelectedItem();
+        String sql = "select * from officers where idofficers=?";
+        try{
+            conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            pst1 = conn1.prepareStatement(sql);
+            pst1.setString(1, tmp);
+            rs1 = pst1.executeQuery();
+            if(rs1.next()){
+                String add = rs1.getString("officers_name");
+                officer_name.setText(add);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jComboBox4PopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments
