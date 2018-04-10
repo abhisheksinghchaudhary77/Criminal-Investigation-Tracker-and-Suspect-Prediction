@@ -1,7 +1,6 @@
-package select_login;
+package Login_Module;
 
-import admin_login.Login_Admin;
-import officer_login.Login_Officer;
+import Login_Module.Login_Admin;
 
 /**
  *

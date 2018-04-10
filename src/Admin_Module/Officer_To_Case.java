@@ -1,13 +1,13 @@
-package assign_case_officer;
+package Admin_Module;
 
-import add_case.Case_Add;
-import add_officer.Officer_Add;
+import Admin_Module.Case_Add;
+import Admin_Module.Officer_Add;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import predict_result.Result_Predict;
+import Admin_Module.Result_Predict;
 
 /**
  *
@@ -217,6 +217,11 @@ public class Officer_To_Case extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jComboBox4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -391,6 +396,10 @@ public class Officer_To_Case extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jComboBox4PopupMenuWillBecomeInvisible
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments

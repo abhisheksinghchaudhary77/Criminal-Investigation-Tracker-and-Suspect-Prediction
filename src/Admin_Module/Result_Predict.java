@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package predict_result;
+package Admin_Module;
 
-import add_case.Case_Add;
-import add_officer.Officer_Add;
-import assign_case_officer.Officer_To_Case;
+import Admin_Module.Case_Add;
+import Admin_Module.Officer_Add;
+import Admin_Module.Officer_To_Case;
 
 /**
  *

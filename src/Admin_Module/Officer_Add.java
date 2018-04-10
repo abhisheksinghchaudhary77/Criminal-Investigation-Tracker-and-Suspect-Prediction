@@ -1,7 +1,7 @@
-package add_officer;
+package Admin_Module;
 
-import add_case.Case_Add;
-import assign_case_officer.Officer_To_Case;
+import Admin_Module.Case_Add;
+import Admin_Module.Officer_To_Case;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import predict_result.Result_Predict;
+import Admin_Module.Result_Predict;
 
 /**
  *
@@ -64,7 +64,6 @@ public class Officer_Add extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(780, 550));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1123, 530));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

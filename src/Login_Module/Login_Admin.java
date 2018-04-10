@@ -1,5 +1,5 @@
-package admin_login;
-import add_case.Case_Add;
+package Login_Module;
+import Admin_Module.Case_Add;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
