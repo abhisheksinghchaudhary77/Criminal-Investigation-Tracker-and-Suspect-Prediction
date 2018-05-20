@@ -5,13 +5,12 @@
  */
 package Admin_Module;
 
-import Admin_Module.Case_Add;
-import Admin_Module.Officer_Add;
-import Admin_Module.Officer_To_Case;
-import Admin_Module.Result_Predict;
+import Login_Module.Login_Officer;
+import Login_Module.Login_Select;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,12 +18,49 @@ import javax.swing.JOptionPane;
  * @author Abhishek S Chaudhary
  */
 public class Result_Add extends javax.swing.JFrame {
+    Connection con1 = null;
+    PreparedStatement pst1 = null;
+    ResultSet rs = null;
+    Connection con2 = null;
+    PreparedStatement pst2 = null;
+    ResultSet rs1 = null;
+    private void combobox_caseid(){
+        try{
+            con1=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql = "select * from cases";
+            pst1 = con1.prepareStatement(sql);
+            rs = pst1.executeQuery();
+            while(rs.next()){
+            String ca_id = rs.getString("id_cases");
+            jComboBox2.addItem(ca_id);
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    private void combobox_susp(){
+        try{
+            con2=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql = "select * from suspects";
+            pst2 = con2.prepareStatement(sql);
+            rs1 = pst2.executeQuery();
+            while(rs1.next()){
+            String susp_na = rs1.getString("nameofsuspect");
+            jComboBox1.addItem(susp_na);
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
     /**
      * Creates new form Result_Add
      */
     public Result_Add() {
         initComponents();
+        combobox_caseid();
+        combobox_susp();
     }
 
     /**
@@ -50,7 +86,6 @@ public class Result_Add extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        case_id = new javax.swing.JTextField();
         case_name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -60,6 +95,8 @@ public class Result_Add extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         result_note = new javax.swing.JTextArea();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -103,6 +140,11 @@ public class Result_Add extends javax.swing.JFrame {
         jPanel2.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
+        nav_view_suspect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_view_suspectActionPerformed(evt);
+            }
+        });
         jPanel2.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
@@ -133,17 +175,11 @@ public class Result_Add extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Case ID:");
 
-        case_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                case_idActionPerformed(evt);
-            }
-        });
-
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Case Name:");
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Suspects:");
+        jLabel1.setText("Guilty:");
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +221,13 @@ public class Result_Add extends javax.swing.JFrame {
         result_note.setRows(5);
         jScrollPane1.setViewportView(result_note);
 
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,51 +239,64 @@ public class Result_Add extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(88, 88, 88)
-                        .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(72, 72, 72)
-                        .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel1))
-                        .addGap(83, 83, 83)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(135, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(19, 19, 19))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2)
-                .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(case_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -263,46 +319,45 @@ public class Result_Add extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void case_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_case_idActionPerformed
-
     private void nav_add_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_caseActionPerformed
+        this.hide();
         Case_Add c = new Case_Add();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
 
     private void nav_add_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_officerActionPerformed
+        this.hide();
         Officer_Add o = new Officer_Add();
         o.setVisible(true);
     }//GEN-LAST:event_nav_add_officerActionPerformed
 
     private void nav_add_case_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_case_officerActionPerformed
+        this.hide();
         Officer_To_Case c = new Officer_To_Case();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_case_officerActionPerformed
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        Login_Select ls = new Login_Select();
+        ls.setVisible(true);
     }//GEN-LAST:event_nav_logoutActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
-            String sql="Insert into cases(case_id, case_name, guilty, note) values(?,?,?,?)";
+            String sql="Insert into cases(case_idr, case_namer, guilty, note) values(?,?,?,?)";
             PreparedStatement pst=con.prepareStatement(sql);
-            pst.setString(1, case_id.getText());
+            pst.setString(1, (String) jComboBox2.getSelectedItem());
             pst.setString(2, case_name.getText());
-            String value1 = jComboBox1.getSelectedItem().toString();
-            pst.setString(3, value1);
+            pst.setString(3, (String) jComboBox1.getSelectedItem());
             pst.setString(4, result_note.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Case Result Added Successfully");
             Result_Add ra = new Result_Add();
             ra.setVisible(true);
             setVisible(false);
-            case_id.setText("");
             case_name.setText("");
             result_note.setText("");
 
@@ -312,6 +367,7 @@ public class Result_Add extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        this.hide();
         Result_Predict rp = new Result_Predict();
         rp.setVisible(true);
     }//GEN-LAST:event_nav_predict_resultActionPerformed
@@ -319,6 +375,16 @@ public class Result_Add extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void nav_view_suspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_view_suspectActionPerformed
+        this.hide();
+        Suspect_View_admin sva = new Suspect_View_admin();
+        sva.setVisible(true);
+    }//GEN-LAST:event_nav_view_suspectActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,9 +422,10 @@ public class Result_Add extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField case_id;
     private javax.swing.JTextField case_name;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

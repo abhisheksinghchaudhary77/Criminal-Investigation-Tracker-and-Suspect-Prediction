@@ -1,5 +1,6 @@
 package Admin_Module;
 
+import Login_Module.Login_Select;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -66,6 +67,7 @@ public class Case_Add extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         case_id1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,12 +112,27 @@ public class Case_Add extends javax.swing.JFrame {
         jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
+        nav_view_suspect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_view_suspectActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
+        nav_view_evidence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_view_evidenceActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_view_evidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 120, -1));
 
         nav_view_case_history.setText("View Case History");
+        nav_view_case_history.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_view_case_historyActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_view_case_history, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
 
         nav_logout.setText("Logout");
@@ -189,6 +206,13 @@ public class Case_Add extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -212,8 +236,13 @@ public class Case_Add extends javax.swing.JFrame {
                 .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(27, 27, 27))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +263,9 @@ public class Case_Add extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,20 +288,25 @@ public class Case_Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        Login_Select ls = new Login_Select();
+        ls.setVisible(true);
     }//GEN-LAST:event_nav_logoutActionPerformed
 
     private void nav_add_case_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_case_officerActionPerformed
+        this.hide();
         Officer_To_Case c = new Officer_To_Case();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_case_officerActionPerformed
 
     private void nav_add_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_officerActionPerformed
+        this.hide();
         Officer_Add o = new Officer_Add();
         o.setVisible(true);
     }//GEN-LAST:event_nav_add_officerActionPerformed
 
     private void nav_add_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_caseActionPerformed
+        this.hide();
         Case_Add c = new Case_Add();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
@@ -310,9 +346,32 @@ public class Case_Add extends javax.swing.JFrame {
     }//GEN-LAST:event_case_id1ActionPerformed
 
     private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        this.hide();
         Result_Predict rp = new Result_Predict();
         rp.setVisible(true);
     }//GEN-LAST:event_nav_predict_resultActionPerformed
+
+    private void nav_view_case_historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_view_case_historyActionPerformed
+        this.hide();
+        CaseHistory_View_admin chva = new CaseHistory_View_admin();
+        chva.setVisible(true);
+    }//GEN-LAST:event_nav_view_case_historyActionPerformed
+
+    private void nav_view_evidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_view_evidenceActionPerformed
+        this.hide();
+        Evidence_View_admin ev = new Evidence_View_admin();
+        ev.setVisible(true);
+    }//GEN-LAST:event_nav_view_evidenceActionPerformed
+
+    private void nav_view_suspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_view_suspectActionPerformed
+        this.hide();
+        Suspect_View_admin sva = new Suspect_View_admin();
+        sva.setVisible(true);
+    }//GEN-LAST:event_nav_view_suspectActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,6 +412,7 @@ public class Case_Add extends javax.swing.JFrame {
     private javax.swing.JTextField case_id;
     private javax.swing.JTextField case_id1;
     private javax.swing.JTextArea case_note;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

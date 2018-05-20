@@ -2,14 +2,13 @@ package Admin_Module;
 
 import Admin_Module.Case_Add;
 import Admin_Module.Officer_To_Case;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Admin_Module.Result_Predict;
+import Login_Module.Login_Select;
 
 /**
  *
@@ -61,6 +60,9 @@ public class Officer_Add extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        pass = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -104,6 +106,11 @@ public class Officer_Add extends javax.swing.JFrame {
         jPanel1.add(nav_add_result, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 120, -1));
 
         nav_view_suspect.setText("View Suspects");
+        nav_view_suspect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nav_view_suspectActionPerformed(evt);
+            }
+        });
         jPanel1.add(nav_view_suspect, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 120, -1));
 
         nav_view_evidence.setText("View Evidence");
@@ -186,11 +193,32 @@ public class Officer_Add extends javax.swing.JFrame {
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Password:");
+
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(243, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(228, 228, 228))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(196, 196, 196)
+                        .addComponent(jButton1)
+                        .addGap(23, 23, 23))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -198,32 +226,25 @@ public class Officer_Add extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(officer_id)
                     .addComponent(officer_name)
                     .addComponent(officer_mob)
                     .addComponent(officer_email)
                     .addComponent(officer_area)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(pass))
                 .addGap(162, 162, 162))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(273, 273, 273))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(228, 228, 228))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(64, 64, 64)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(officer_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,9 +270,21 @@ public class Officer_Add extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel14)))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(22, 22, 22))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,7 +315,7 @@ public class Officer_Add extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con1=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
-            String sql="Insert into officers(idofficers, officers_name, officers_mobile, officers_address, officers_email, officers_area) values(?,?,?,?,?,?)";
+            String sql="Insert into officers(idofficers, officers_name, officers_mobile, officers_address, officers_email, officers_area, pass) values(?,?,?,?,?,?,?)";
             PreparedStatement pst1=con1.prepareStatement(sql);
             pst1.setString(1, officer_id.getText());
             pst1.setString(2, officer_name.getText());
@@ -290,6 +323,7 @@ public class Officer_Add extends javax.swing.JFrame {
             pst1.setString(4, officer_address.getText());
             pst1.setString(5, officer_email.getText());
             pst1.setString(6, officer_area.getText());
+            pst1.setString(7, pass.getText());
             pst1.execute();
             //JOptionPane.showMessageDialog(null, "Officer Added Successfully");
 
@@ -303,34 +337,51 @@ public class Officer_Add extends javax.swing.JFrame {
             officer_address.setText("");
             officer_email.setText("");
             officer_area.setText("");
+            pass.setText("");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }                                                  
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void nav_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_logoutActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        Login_Select ls = new Login_Select();
+        ls.setVisible(true);
     }//GEN-LAST:event_nav_logoutActionPerformed
 
     private void nav_add_case_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_case_officerActionPerformed
+        this.hide();
         Officer_To_Case c = new Officer_To_Case();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_case_officerActionPerformed
 
     private void nav_add_officerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_officerActionPerformed
+        this.hide();
         Officer_Add o = new Officer_Add();
         o.setVisible(true);
     }//GEN-LAST:event_nav_add_officerActionPerformed
 
     private void nav_add_caseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_add_caseActionPerformed
+        this.hide();
         Case_Add c = new Case_Add();
         c.setVisible(true);
     }//GEN-LAST:event_nav_add_caseActionPerformed
 
     private void nav_predict_resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_predict_resultActionPerformed
+        this.hide();
         Result_Predict rp = new Result_Predict();
         rp.setVisible(true);
     }//GEN-LAST:event_nav_predict_resultActionPerformed
+
+    private void nav_view_suspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nav_view_suspectActionPerformed
+        this.hide();
+        Suspect_View_admin sva = new Suspect_View_admin();
+        sva.setVisible(true);
+    }//GEN-LAST:event_nav_view_suspectActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,12 +418,14 @@ public class Officer_Add extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -395,5 +448,6 @@ public class Officer_Add extends javax.swing.JFrame {
     private javax.swing.JTextField officer_id;
     private javax.swing.JTextField officer_mob;
     private javax.swing.JTextField officer_name;
+    private javax.swing.JPasswordField pass;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,18 +1,26 @@
 package Login_Module;
 
+import Admin_Module.Case_Add;
+import Officer_Module.CaseHistory_Add;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abhishek S Chaudhary
  */
 public class Login_Officer extends javax.swing.JFrame {
-
+    public static String officer_id;
+    public static String case_id;
     /**
      * Creates new form Login_Officer
      */
     public Login_Officer() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,13 +34,14 @@ public class Login_Officer extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        case_id = new javax.swing.JTextField();
+        casee_id = new javax.swing.JTextField();
         jpass = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        officer_id = new javax.swing.JTextField();
+        officerr_id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -49,9 +58,9 @@ public class Login_Officer extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
-        case_id.addActionListener(new java.awt.event.ActionListener() {
+        casee_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                case_idActionPerformed(evt);
+                casee_idActionPerformed(evt);
             }
         });
 
@@ -64,9 +73,9 @@ public class Login_Officer extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Officer ID");
 
-        officer_id.addActionListener(new java.awt.event.ActionListener() {
+        officerr_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                officer_idActionPerformed(evt);
+                officerr_idActionPerformed(evt);
             }
         });
 
@@ -101,6 +110,13 @@ public class Login_Officer extends javax.swing.JFrame {
             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
 
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -122,8 +138,8 @@ public class Login_Officer extends javax.swing.JFrame {
                                 .addGap(49, 49, 49)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jpass, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(officer_id)
-                            .addComponent(case_id)))
+                            .addComponent(officerr_id)
+                            .addComponent(casee_id)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel1))
@@ -131,6 +147,10 @@ public class Login_Officer extends javax.swing.JFrame {
                         .addGap(133, 133, 133)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,18 +160,20 @@ public class Login_Officer extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(case_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(casee_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(officer_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(officerr_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,21 +197,51 @@ public class Login_Officer extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void case_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_case_idActionPerformed
+    private void casee_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casee_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_case_idActionPerformed
+    }//GEN-LAST:event_casee_idActionPerformed
 
     private void jpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpassActionPerformed
 
-    private void officer_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officer_idActionPerformed
+    private void officerr_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officerr_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_officer_idActionPerformed
+    }//GEN-LAST:event_officerr_idActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","root");
+            String sql="Select case_id, officer_id, pass from officertocase, officers where case_id=? and officer_id=? and pass=?";
+            PreparedStatement pst=con.prepareStatement(sql);
+            case_id=casee_id.getText();
+            pst.setString(1, casee_id.getText());
+            officer_id=officerr_id.getText();
+            pst.setString(2, officerr_id.getText());
+            //aa();
+            pst.setString(3, jpass.getText());
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Login Successful");
+                CaseHistory_Add caa = new CaseHistory_Add();
+                caa.setVisible(true);
+                setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid User, Kindly Retry");
+                casee_id.setText("");
+                officerr_id.setText("");
+                jpass.setText("");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,9 +277,11 @@ public class Login_Officer extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField case_id;
+    public javax.swing.JTextField casee_id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,6 +291,9 @@ public class Login_Officer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jpass;
-    private javax.swing.JTextField officer_id;
+    private javax.swing.JTextField officerr_id;
     // End of variables declaration//GEN-END:variables
+
+    
+
 }
