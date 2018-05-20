@@ -25,9 +25,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Evidence_View_admin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Evidence_View_Form
-     */
     public Evidence_View_admin() {
         initComponents();
     }
